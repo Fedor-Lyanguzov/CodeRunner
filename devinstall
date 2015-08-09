@@ -11,6 +11,7 @@ import os
 import shutil
 import subprocess
 
+
 def printFailMessage():
     print("This script failed to set up the necessary symbolic links.")
     print("You will need to manually make the following symbolic links to ")
@@ -21,18 +22,18 @@ def printFailMessage():
 
 def main():
     cwd = os.getcwd()
-    if "moodle/local/CodeRunner" not in cwd:
+    if "local/CodeRunner" not in cwd:
         print("WARNING: CodeRunner appears not to have been cloned into moodle/local")
         print ("as recommended.")
         printFailMessage()
     else:
         try:
-            searchString = "/moodle/local/CodeRunner"
+            searchString = "local/CodeRunner"
             pos = cwd.index(searchString)
             basedir = cwd[0:pos]
             installdir = cwd[0:pos + len(searchString)]
-            dirs = [("type/coderunner", "moodle/question/type/coderunner"),
-                ("behaviour/adaptive_adapted_for_coderunner", "moodle/question/behaviour/adaptive_adapted_for_coderunner")]
+            dirs = [("type/coderunner", "question/type/coderunner"),
+                ("behaviour/adaptive_adapted_for_coderunner", "question/behaviour/adaptive_adapted_for_coderunner")]
 
             for (src,dest) in dirs:
                 newdir = "{0}/{1}".format(basedir, dest)
