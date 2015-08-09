@@ -28,7 +28,7 @@ def main():
         printFailMessage()
     else:
         try:
-            searchString = "local/CodeRunner"
+            searchString = "/local/CodeRunner"
             pos = cwd.index(searchString)
             basedir = cwd[0:pos]
             installdir = cwd[0:pos + len(searchString)]
