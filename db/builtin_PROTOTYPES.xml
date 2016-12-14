@@ -1,0 +1,595 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 0  -->
+  <question type="category">
+    <category>
+        <text>$system$/CR_PROTOTYPES</text>
+
+    </category>
+  </question>
+
+<!-- question: 16909  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_c_function</text>
+    </name>
+    <questiontext format="html">
+      <text>Used for C write-a-function questions but ONLY IF the function
+          should have no side-effects. Must not be used for C functions that
+          generate output or consume input or alter global state in any way, as it
+          attempts to wrap all tests into a single compile-and-run step</text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>c_function</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate><![CDATA[#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
+#include <math.h>
+#define SEPARATOR "#<ab@17943918#@>#"
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+{% for TEST in TESTCASES %}
+   {
+    {{ TEST.testcode }};
+   }
+    {% if not loop.last %}printf("%s\n", SEPARATOR);{% endif %}
+{% endfor %}
+    return 0;
+}]]></combinatortemplate>
+    <testsplitterre><![CDATA[|#<ab@17943918#@>#\n|ms]]></testsplitterre>
+    <enablecombinator>1</enablecombinator>
+    <pertesttemplate><![CDATA[#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdbool.h>
+#include <math.h>
+
+{{ STUDENT_ANSWER }}
+
+int main() {
+    {{ TEST.testcode }};
+    return 0;
+}]]></pertesttemplate>
+    <language>C</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader>EqualityGrader</grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 16910  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_c_program</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>Used for C write-a-program questions, where there is no
+          per-test-case code, and the different tests just use different
+          stdin data.</text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>c_program</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate></combinatortemplate>
+    <testsplitterre></testsplitterre>
+    <enablecombinator>0</enablecombinator>
+    <pertesttemplate>{{ STUDENT_ANSWER }}</pertesttemplate>
+    <language>C</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 16911  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_java_class</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>Used for Java write-a-class questions where the student submits a
+          complete class as their answer. Since the test cases for such questions
+          will typically instantiate an object of the class and perform
+          some tests on it, no attempt is made to combine the different test
+          cases into a single executable. Each test case code is assumed to be
+          a set of statements to be wrapped into the static void main 
+          method of a separate Main class.</text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate></combinatortemplate>
+    <testsplitterre></testsplitterre>
+    <enablecombinator>0</enablecombinator>
+    <pertesttemplate>{{ STUDENT_ANSWER | replace({'public class ': 'class '}) }}
+
+public class __Tester__ {
+
+    public static void main(String[] args) {
+        __Tester__ main = new __Tester__();
+        main.runTests();
+    }
+
+    public void runTests() {
+        {{ TEST.testcode }};
+    }
+}
+</pertesttemplate>
+    <language>Java</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb>2000</memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 16912  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_java_method</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>Used for Java write-a-method questions where the method is essentially
+          a stand-alone function, but ONLY IF the function should have no side-effects.
+          Must not be used for methods that generate or consume output or alter
+          global state in any way, as it attempts to wrap all tests into a single
+          compile-and-run step</text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_method</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate><![CDATA[public class Main {
+    static String SEPARATOR = "#<ab@17943918#@>#";
+    {{ STUDENT_ANSWER }}
+
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.runTests();
+    }
+
+    public void runTests() {
+{% for testCase in TESTCASES %}
+    {{ testCase.testcode }};
+    {% if not loop.last %}
+    System.out.println(SEPARATOR);
+    {% endif %}
+{% endfor %}
+    }
+}]]></combinatortemplate>
+    <testsplitterre><![CDATA[|#<ab@17943918#@>#
+|ms]]></testsplitterre>
+    <enablecombinator>1</enablecombinator>
+    <pertesttemplate>public class Main {
+
+    {{ STUDENT_ANSWER }}
+
+    public static void main(String[] args) {
+        Main main = new Main();
+        main.runTests();
+    }
+
+    public void runTests() {
+        {{ TEST.testcode }};
+    }
+}</pertesttemplate>
+    <language>Java</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb>2000</memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 16913  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_java_program</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>Used for Java write-a-program questions where the student submits
+          a complete program as their answer. The program is executed for each
+          test case. There is no test code, just stdin test data
+          (though this isn't actually checked: caveat emptor).</text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_program</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate></combinatortemplate>
+    <testsplitterre></testsplitterre>
+    <enablecombinator>0</enablecombinator>
+    <pertesttemplate>{{ STUDENT_ANSWER }}</pertesttemplate>
+    <language>Java</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb>2000</memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 16914  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_octave_function</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>Used for Octave function questions. Student code must be a function
+          declaration, which is tested with each testcase. This question
+          type is experimental and has had little use.</text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>octave_function</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate><![CDATA[{{ STUDENT_ANSWER }}
+
+format free
+        
+{% for TEST in TESTCASES %}
+{{ TEST.testcode }};
+{% if not loop.last %}
+disp('#<ab@17943918#@>#');
+{% endif %}
+{% endfor %}
+]]></combinatortemplate>
+    <testsplitterre><![CDATA[|#<ab@17943918#@>#
+|ms]]></testsplitterre>
+    <enablecombinator>1</enablecombinator>
+    <pertesttemplate>{{ STUDENT_ANSWER }}
+
+format free
+        
+{{ TEST.testcode }};</pertesttemplate>
+    <language>octave</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs>3</cputimelimitsecs>
+    <memlimitmb>1000</memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 2760  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_php</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A php question in which the student submission is a
+normal php file, with PHP code enclosed in &lt;?php ... ?&gt; tags and
+the output is the usual PHP output including all HTML content outside
+the php tags.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>php</coderunnertype>
+    <prototypetype>2</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate><![CDATA[{{ STUDENT_ANSWER }}
+
+define('SEPARATOR', '#<ab@17943918#@>#');
+
+{% for TEST in TESTCASES %}
+{{ TEST.testcode }};
+{% if not loop.last %}
+echo SEPARATOR;
+{% endif %}
+{% endfor %}]]></combinatortemplate>
+    <testsplitterre><![CDATA[|#<ab@17943918#@>#\n|ms]]></testsplitterre>
+    <enablecombinator>1</enablecombinator>
+    <pertesttemplate>{{STUDENT_ANSWER}}
+
+{{TEST.testcode}}</pertesttemplate>
+    <language>php</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader>EqualityGrader</grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb>500000</memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 16915  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_python2</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>A generic Python2 question. For each test case, the
+          student code runs first, followed by the test code.</text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>python2</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate><![CDATA[{{ STUDENT_ANSWER }}
+
+__student_answer__ = """{{ STUDENT_ANSWER | e('py') }}"""
+
+SEPARATOR = "#<ab@17943918#@>#"
+
+{% for TEST in TESTCASES %}
+{{ TEST.testcode }}
+{% if not loop.last %}
+print(SEPARATOR)
+{% endif %}
+{% endfor %}]]></combinatortemplate>
+    <testsplitterre><![CDATA[|#<ab@17943918#@>#
+|ms]]></testsplitterre>
+    <enablecombinator>1</enablecombinator>
+    <pertesttemplate><![CDATA[{{STUDENT_ANSWER}}
+
+__student_answer__ = """{{ STUDENT_ANSWER | e('py') }}"""
+
+{{TEST.testcode}}]]></pertesttemplate>
+    <language>python2</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+<!-- question: 16916  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILT_IN_PROTOTYPE_python3</text>
+    </name>
+    <questiontext format="moodle_auto_format">
+      <text>A generic Python3 question. For each test case, the
+          student code runs first, followed by the test code.</text>
+    </questiontext>
+    <generalfeedback format="moodle_auto_format">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>python3</coderunnertype>
+    <prototypetype>1</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate><![CDATA[{{ STUDENT_ANSWER }}
+
+__student_answer__ = """{{ STUDENT_ANSWER | e('py') }}"""
+
+SEPARATOR = "#<ab@17943918#@>#"
+
+{% for TEST in TESTCASES %}
+{{ TEST.testcode }}
+{% if not loop.last %}
+print(SEPARATOR)
+{% endif %}
+{% endfor %}]]></combinatortemplate>
+    <testsplitterre><![CDATA[|#<ab@17943918#@>#
+|ms]]></testsplitterre>
+    <enablecombinator>1</enablecombinator>
+    <pertesttemplate><![CDATA[{{STUDENT_ANSWER}}
+
+__student_answer__ = """{{ STUDENT_ANSWER | e('py') }}"""
+
+{{TEST.testcode}}]]></pertesttemplate>
+    <language>python3</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+  
+<!-- question: 17428  -->
+  <question type="coderunner">
+    <name>
+      <text>BUILTIN_PROTOTYPE_Python3_w_input</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>A variant of the normal Python3 question in which the
+usual Python3 input() function is replaced with a version that echoes the data
+it reads from standard input to standard output. This results in the program
+output looking the same to the student as when the run it interactively,
+with keyboard characters being echoed to the screen.</p>
+<p>A slight disadvantage is that the line numbers in any error messages are
+displaced by the length of inserted function, so don't correspond to those
+displayed in the ACE edit window.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>python3_w_input</coderunnertype>
+    <prototypetype>2</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime></penaltyregime>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <useace>1</useace>
+    <resultcolumns></resultcolumns>
+    <answer></answer>
+    <combinatortemplate><![CDATA[__saved_input__ = input
+def input(prompt=''):
+    s = __saved_input__(prompt)
+    print(s)
+    return s
+
+SEPARATOR = "#<ab@17943918#@>#"
+
+{% for TEST in TESTCASES %}
+{{ TEST.testcode }}
+{% if not loop.last %}
+print(SEPARATOR)
+{% endif %}
+{% endfor %}]]></combinatortemplate>
+    <testsplitterre><![CDATA[|#<ab@17943918#@>#\n|ms]]></testsplitterre>
+    <enablecombinator>1</enablecombinator>
+    <pertesttemplate>__saved_input__ = input
+def input(prompt=''):
+    s = __saved_input__(prompt)
+    print(s)
+    return s
+    
+{{STUDENT_ANSWER}}
+
+{{TEST.testcode}}</pertesttemplate>
+    <language>python3</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader>EqualityGrader</grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <testcases>
+    </testcases>
+  </question>
+
+</quiz>
